@@ -12,6 +12,17 @@ const router = createRouter({
       name: 'knowledgedoc',
       component: () => import('@/views/knowledgedoc.vue')
     },
+    {
+      path: '/html/introduction',
+      name: 'htmlIntroduction',
+      component: () => import('@/views/html/index.vue')
+    },
+    {
+      path: '/:any(.*)',
+      name: 'notFound',
+      component: () => import('@/views/notFound.vue')
+    },
+
   ]
 })
 
