@@ -38,7 +38,7 @@ export default {
         500: '#1b1b1d',
 
         DEFAULT: '#1c1e21',
-      }
+      },
     },
   },
   plugins: [],

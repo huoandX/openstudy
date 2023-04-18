@@ -1,9 +1,9 @@
 <script setup>
-
 </script>
 <template>
-   <router-view></router-view>
+<div>
+  HTML简介
+</div>
 </template>
-<style lang="scss">
-
+<style lang="scss" scoped>
 </style>
