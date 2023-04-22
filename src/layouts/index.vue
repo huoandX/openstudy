@@ -1,108 +1,39 @@
 <script setup>
-import { ref } from 'vue';
-const htmlCatalogue = ref([
-  {
-    title: '基础知识',
-    children: [
-      { title: 'HTML简介' },
-      { title: '开发环境' },
-      { title: '基础知识' },
-      { title: '注释' },
-    ]
-  },
-  {
-    title: '页面结构',
-    children: [
-      { title: '语义标签' },
-      { title: '嵌套关系' },
-      { title: '基本结构' },
-      { title: '内容标题' },
-      { title: '页眉页脚' },
-      { title: '导航元素' },
-      { title: '主要区域' },
-      { title: '内容区域' },
-      { title: '区块定义' },
-      { title: '符加区域' },
-      { title: '通用容器' },
-    ]
-  },
-  {
-    title: '文本相关',
-    children: [
-      { title: '基本标签' },
-      { title: '描述文本' },
-      { title: '强调文本' },
-      { title: '引用标签' },
-      { title: '联系信息' },
-    ]
-  },
-  {
-    title: '链接与图片',
-    children: [
-      { title: '图片处理' },
-      { title: '网页链接' },
-    ]
-  },
-  {
-    title: '表单与列表',
-    children: [
-      { title: '表单' },
-      { title: '列表' },
-    ]
-  },
-  {
-    title: '表格与多媒体',
-    children: [
-      { title: '表格' },
-      { title: '声音' },
-      { title: '视频' },
-    ]
-  }
-])
-const handleMenu = (menu) => {
-  if (menu.isClick) {
-    menu.isClick = false;
-    return;
-  }
-  menu.isClick = true;
-}
-const handleCmenu = (menu, cmenu) => {
-  htmlCatalogue.value.forEach(item => {
-    item.children.forEach(children => {
-      children.active = false;
-    })
-  })
-  menu.children.forEach((item) => {
-    item.active = false;
-  })
-  cmenu.active = true; 
-}
+import menuService from '@/composables/menus.js'
+import { useRoute } from 'vue-router';
+import { watch } from 'vue';
+const route = useRoute()
+// 当路由发生改变的时候进行变化
+watch(route, () => {
+  menuService.setCurrentMenu(route)
+},{immediate:true})
 </script>
 <template>
-   <div class="main pt-16">
+   <div class="main pt-16 flex">
       <div class="sidebar w-[300px] overflow-auto">
          <div class="nav p-2">
             <h2 class="text-blue-200 font-medium px-4 py-2 cursor-pointer
             ">HTML全面指南</h2>
-            <div class="nav-main" v-for="menu of htmlCatalogue">
-              <h2 @click="handleMenu(menu)"
+            <div class="nav-main" v-for="menu of menuService.menus.value[0].children">
+              <h2
+              @click="menuService.toggleParentMenu(menu)"
               class="px-4 py-2 cursor-pointer flex justify-between items-center text-gray">
-                <span>{{ menu.title }}</span>
+                <span>{{ menu.meta.menu.title }}</span>
                 <i class="fas fa-chevron-right mr-14 duration-300" :class="{'rotate-90':menu.isClick}"></i>
               </h2>
               <ul class="pl-3" v-for="cmenu of menu.children">
                 <li v-show="menu.isClick" 
-                @click="handleCmenu(menu,cmenu)"
-                :class="{active :cmenu.active}"
+                @click="$router.push({name:cmenu.name})"
+                :class="{active :cmenu.isClick}"
                 class="px-4 py-2 cursor-pointer rounded-md hover:bg-white-50 hover:text-blue"
                 >
-                  {{ cmenu.title }}
+                  {{ cmenu.meta.menu.title }}
                 </li>
               </ul>
             </div>
          </div>
       </div>
-      <router-view></router-view>
+      <router-view class="flex-1"></router-view>
    </div>
 </template>
 <style lang="scss">

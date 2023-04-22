@@ -1,3 +1,5 @@
+import htmlDoc from './html';
+
 const routes = [
   {
     path: '/',
@@ -14,5 +16,6 @@ const routes = [
     name: 'notFound',
     component: () => import('@/views/notFound.vue')
   },
+  ...htmlDoc
 ]
 export default routes
