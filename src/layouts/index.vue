@@ -6,14 +6,12 @@ const route = useRoute()
 // 当路由发生改变的时候进行变化
 watch(route, () => {
   menuService.setCurrentMenu(route)
-},{immediate:true})
+}, { immediate: true })
 </script>
 <template>
    <div class="main pt-16 flex">
       <div class="sidebar w-[300px] overflow-auto">
          <div class="nav p-2">
-            <h2 class="text-blue-200 font-medium px-4 py-2 cursor-pointer
-            ">HTML全面指南</h2>
             <div class="nav-main" v-for="menu of menuService.menus.value[0].children">
               <h2
               @click="menuService.toggleParentMenu(menu)"
@@ -25,7 +23,7 @@ watch(route, () => {
                 <li v-show="menu.isClick" 
                 @click="$router.push({name:cmenu.name})"
                 :class="{active :cmenu.isClick}"
-                class="px-4 py-2 cursor-pointer rounded-md hover:bg-white-50 hover:text-blue"
+                class="px-4 py-2 my-1 cursor-pointer rounded-md hover:bg-white-50 hover:text-blue"
                 >
                   {{ cmenu.meta.menu.title }}
                 </li>

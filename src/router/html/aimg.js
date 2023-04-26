@@ -1,7 +1,7 @@
-export default {
+ const aimg = {
   name: 'aimg',
   path: '/htmldoc/aimg',
-  redirect:'/htmldoc/aimg/imghandle',
+  redirect: { name: 'imghandle' },
   component: () => import('@/layouts/index.vue'),
   meta: { menu: { title: '链接与图片', icon: 'DashboardOne' } },
   children: [
@@ -14,4 +14,5 @@ export default {
       component: () => import('@/views/html/aimg/weblink.vue'),
     }
   ] 
-} 
+}
+export default aimg

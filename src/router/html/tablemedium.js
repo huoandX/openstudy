@@ -1,4 +1,4 @@
-export default {
+ const tablemedium = {
   name: 'tablemedium',
   path: '/htmldoc/tablemedium',
   redirect:'/htmldoc/tablemedium/tables',
@@ -19,3 +19,4 @@ export default {
     }
   ] 
 }
+export default tablemedium

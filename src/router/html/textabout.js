@@ -1,7 +1,7 @@
-export default {
+ const textabout =  {
   name: 'textabout',
   path: '/htmldoc/textabout',
-  redirect:'/htmldoc/textabout/basiclabel',
+  redirect:{name:'basiclabel'},
   component: () => import('@/layouts/index.vue'),
   meta: { menu: { title: '文本相关', icon: 'DashboardOne' } },
   children: [
@@ -27,4 +27,5 @@ export default {
       component: () => import('@/views/html/textabout/contact.vue'),
     }
   ] 
-} 
+}
+export default textabout

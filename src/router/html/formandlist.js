@@ -1,7 +1,7 @@
-export default {
+ const formandlist =  {
   name: 'formandlist',
   path: '/htmldoc/formandlist',
-  redirect:'/htmldoc/formandlist/forms',
+  redirect: { name:'forms'},
   component: () => import('@/layouts/index.vue'),
   meta: { menu: { title: '表单与列表', icon: 'DashboardOne' } },
   children: [
@@ -15,3 +15,4 @@ export default {
     }
   ] 
 }
+export default formandlist

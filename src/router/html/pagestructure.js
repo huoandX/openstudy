@@ -1,7 +1,7 @@
-export default {
+const pagestructure = {
   name: 'pagestructure',
   path: '/htmldoc/pagestructure',
-  redirect:'/htmldoc/pagestructure/semantics',
+  redirect:{name:'html.semantics'},
   component: () => import('@/layouts/index.vue'),
   meta: { menu: { title: '页面结构', icon: 'DashboardOne' } },
   children: [
@@ -50,4 +50,5 @@ export default {
       component: () => import('@/views/html/pagestructure/genericdiv.vue'),
     }
   ] 
-} 
+}
+export default pagestructure

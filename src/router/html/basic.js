@@ -1,14 +1,14 @@
-export default {
-  name: 'htmlIntr',
-  path: '/htmldoc/intr',
-  redirect:'/htmldoc/intr/intr',
+const basic = {
+  path: '/htmldoc/basic',
   component: () => import('@/layouts/index.vue'),
-  meta: { menu: { title: '基础知识', icon: 'DashboardOne' } },
+  meta: { menu: { title: '基础知识', icon: 'DashboardOne' }},
+  name: 'basicknow',
+  redirect: { name: 'htmlintro' },
   children: [
     {
-      name: 'html.intr', meta: { menu: { title: 'HTML简介' } }, path: 'intr',
-      component: () => import('@/views/html/basic/intr.vue'),
-
+      name:'htmlintro',
+      meta: { menu: { title: 'HTML简介' } }, path: 'intro',
+      component: () => import('@/views/html/basic/intro.vue'),
     },
     {
       name: 'dev', meta: { menu: { title: '开发环境' } }, path: 'dev',
@@ -22,5 +22,6 @@ export default {
       name: 'html.explanatory', meta: { menu: { title: '注释' } }, path: 'explanatory',
       component: () => import('@/views/html/basic/explanatory.vue'),
     }
-  ] 
-} 
+  ]
+}
+export default basic
